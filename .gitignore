@@ -1,0 +1,9 @@
+test/
+scripts/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+vArduino/
