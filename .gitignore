@@ -7,3 +7,4 @@ scripts/
 *.pyc
 __pycache__/
 vArduino/
+settings.py
