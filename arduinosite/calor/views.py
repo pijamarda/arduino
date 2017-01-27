@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from django.utils import timezone
+from django.utils.timezone import localtime
 
 from .models import TemperaturaTest
 
@@ -42,9 +43,8 @@ def add_temp_test(request):
     if request.method == 'GET':
         data = TemperaturaTest.objects.create(temperatura=random_temp, fecha=timezone.now())
     
-
     
-    response = {'fecha': data.fecha.strftime('%Y %m %d %H:%M:%S'), 
+    response = {'fecha': localtime(data.fecha).strftime('%Y %m %d %H:%M:%S'), 
                 'temperatura': data.temperatura,
                 }
     return HttpResponse(json.dumps( response ), content_type="application/json")
@@ -57,7 +57,7 @@ def add_temp(request):
         print('estoy dentro de GET')
 
     
-    response = {'fecha': data.fecha.strftime('%Y %m %d %H:%M:%S'), 
+    response = {'fecha': localtime(data.fecha).strftime('%Y %m %d %H:%M:%S'), 
                 'temperatura': data.temperatura,
                 }
     return HttpResponse(json.dumps( response ), content_type="application/json")
