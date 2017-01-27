@@ -35,13 +35,13 @@ def api_index(request):
 
 def add_temp_test(request):
 
-    print('estoy dentro de la funcion')
+    
     # Primero nos traemos desde el GET las nuevas variables a modificar
 
     random_temp = float(decimal.Decimal(random.randrange(10000))/100)
     if request.method == 'GET':
         data = TemperaturaTest.objects.create(temperatura=random_temp, fecha=timezone.now())
-        print('estoy dentro de GET')
+    
 
     
     response = {'fecha': data.fecha.strftime('%Y %m %d %H:%M:%S'), 
@@ -50,4 +50,14 @@ def add_temp_test(request):
     return HttpResponse(json.dumps( response ), content_type="application/json")
 
 def add_temp(request):
-    return HttpResponse('hola')
+    print('estoy dentro de la funcion')
+    if request.method == 'GET':
+        
+        data = TemperaturaTest.objects.create(temperatura=random_temp, fecha=timezone.now())
+        print('estoy dentro de GET')
+
+    
+    response = {'fecha': data.fecha.strftime('%Y %m %d %H:%M:%S'), 
+                'temperatura': data.temperatura,
+                }
+    return HttpResponse(json.dumps( response ), content_type="application/json")
