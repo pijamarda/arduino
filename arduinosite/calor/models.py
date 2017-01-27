@@ -7,6 +7,13 @@ class TemperaturaTest(models.Model):
     fecha = models.DateTimeField('Fecha')
     #Temperatura, en pricipio con formato 23.12
     temperatura = models.DecimalField('Temperatura', max_digits=5, decimal_places=2)
+    
+
+class Temperatura(models.Model):
+    #Este dato sera aportado directamente por el servidor
+    fecha = models.DateTimeField('Fecha')
+    #Temperatura, en pricipio con formato 23.12
+    temperatura = models.DecimalField('Temperatura', max_digits=5, decimal_places=2)
     #por ejemplo Las Matas, Valdemoro, Torrelavega, etc
     localizacion = models.CharField('localizacion', max_length=20)
     #dentro de una casa por ejemplo, la buhardilla, el sotano, el jardin
