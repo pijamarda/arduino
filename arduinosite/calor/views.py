@@ -52,10 +52,21 @@ def add_temp_test(request):
 def add_temp(request):
     print('estoy dentro de la funcion')
     if request.method == 'GET':
-        temperatura_get = request.GET.get('temperatura')
-        data = TemperaturaTest.objects.create(temperatura=temperatura_get, fecha=timezone.now())
+        temp_get = request.GET.get('temp')
+        loc_get = request.GET.get('loc')
+        ubi_get = request.GET.get('ubi')
+        user_get = request.GET.get('user')
+        sid_get = request.GET.get('sid')
+        sip_get = request.GET.get('sip')
+        print(temp_get)
+        print(loc_get)
+        print(ubi_get)
+        print(user_get)
+        print(sid_get)
+        print(sip_get)
+        #data = TemperaturaTest.objects.create(temperatura=temperatura_get, fecha=timezone.now())
         print('estoy dentro de GET')
 
     
     
-    return HttpResponse(temperatura_get)
+    return HttpResponse(temp_get)
