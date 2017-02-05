@@ -7,7 +7,7 @@ from django.template import loader
 from django.utils import timezone
 from django.utils.timezone import localtime
 
-from .models import TemperaturaTest
+from .models import TemperaturaTest, Temperatura
 
 def index(request):
 
@@ -64,7 +64,7 @@ def add_temp(request):
         print(user_get)
         print(sid_get)
         print(sip_get)
-        data = TemperaturaTest.objects.create(temperatura=temperatura_get, 
+        data = Temperatura.objects.create(temperatura=temp_get, 
                                             fecha=timezone.now(),
                                             localizacion=loc_get,
                                             ubicacion=ubi_get,
