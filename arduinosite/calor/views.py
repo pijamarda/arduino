@@ -64,7 +64,13 @@ def add_temp(request):
         print(user_get)
         print(sid_get)
         print(sip_get)
-        #data = TemperaturaTest.objects.create(temperatura=temperatura_get, fecha=timezone.now())
+        data = TemperaturaTest.objects.create(temperatura=temperatura_get, 
+                                            fecha=timezone.now(),
+                                            localizacion=loc_get,
+                                            ubicacion=ubi_get,
+                                            usuario=user_get,
+                                            sensor_id=sid_get,
+                                            ip_sensor=sip_get)
         print('estoy dentro de GET')   
     
     return HttpResponse(temp_get)
