@@ -19,6 +19,8 @@ class Temperatura(models.Model):
     #dentro de una casa por ejemplo, la buhardilla, el sotano, el jardin
     ubicacion = models.CharField('ubicacion', max_length=50)
     #para en un futuro quizas diferenciar los datos subidos por usuario, etc
-    usuario = models.CharField('usuario', max_length=10)
+    usuario = models.CharField('usuario', max_length=15)
     # El id del sensor, en este caso la MAC address
-    sensor_id = models.CharField('sensor_id', max_length=10)
+    sensor_id = models.CharField('sensor_id', max_length=30)
+    # El ip del sensor
+    ip_sensor = models.GenericIPAddressField('ip_sensor', protocol='both', default='0.0.0.0')
