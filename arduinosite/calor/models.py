@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -24,3 +25,4 @@ class Temperatura(models.Model):
     sensor_id = models.CharField('sensor_id', max_length=30)
     # El ip del sensor
     ip_sensor = models.GenericIPAddressField('ip_sensor', protocol='both', default='0.0.0.0')
+
