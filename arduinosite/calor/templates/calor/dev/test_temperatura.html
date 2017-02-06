@@ -1,0 +1,95 @@
+
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/highcharts.js"></script>
+<script src="/static/js/exporting.js"></script>
+<script src="/static/js/calor-ajax.js"></script>
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+<div>
+{% if tiempo %}
+    Son las {{tiempo}}
+{% endif %}
+
+<button id="add_temp_test"
+        class="btn btn-primary" 
+        type="button">
+        Ok
+</button>
+</div>
+<div>
+    <div style="float: left">
+        <div id='tabla_temperaturas'>
+            {% if temperaturas %}
+                <table id="t_temp" class="table-condensed table-striped table-bordered">
+                <tr>
+                    <th> Fecha </th> <th> Temperatura </th>
+                </tr>
+                {% for t in temperaturas %}
+                    <tr>
+                    <td>{{t.fecha |date:"Y m d H:i:s" }}</td> <td>{{t.temperatura}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+    <div style="float: right; width:80%">
+        <div id='grafica_temperaturas'>            
+        </div>
+    </div>
+</div>
+<script>
+    var test_t = {{data_temp | safe}};
+    var test_f = {{data_fecha | safe}};
+    $(function () {
+        
+        
+        Highcharts.chart('grafica_temperaturas', {
+            title: {
+                text: 'Temperatura',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: aleatorio',
+                x: -20
+            },
+            xAxis: {
+                categories: test_f
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperatura (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Valdemoro',
+                data: test_t
+            }, {
+                name: 'Las Matas',
+                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            }, {
+                name: 'Buhardilla',
+                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            }, {
+                name: 'Salon',
+                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
+    });
+</script>

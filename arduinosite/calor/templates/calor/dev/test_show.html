@@ -1,0 +1,81 @@
+
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/highcharts.js"></script>
+<script src="/static/js/exporting.js"></script>
+<script src="/static/js/calor-ajax.js"></script>
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+<div>
+{% if tiempo %}
+    Son las {{tiempo}}
+{% endif %}
+</div>
+<div>   
+    <div style="float: left; width: 100%;">
+        <div id='grafica_show'>            
+        </div>
+    </div>
+</div>
+<script>
+    var data = {{data | safe}};    
+    $(function () {       
+        
+        Highcharts.chart('grafica_show', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Temperatura en Valdemoro'
+            },
+            subtitle: {
+                text: 'Zona: Buhardilla'
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperatura'
+                },
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 1,
+                            x2: 0,
+                            y2: 0
+                        },
+                        stops: [
+                            [0.0, '#7ba2e0'], // blue                            
+                            //[0.5, '#DDDF0D'], // yellow                            
+                            [1, '#DDDF0D'] // yellow
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'ºC',
+                data: data
+            }]
+        });
+    });
+</script>
