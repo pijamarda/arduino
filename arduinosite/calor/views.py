@@ -89,7 +89,7 @@ def test_show(request):
     data = []
 
     for t in temperaturas:
-        data.append([time.mktime((t.fecha).timetuple())*1000,float(t.temperatura)])  
+        data.append([time.mktime((localtime(t.fecha)).timetuple())*1000,float(t.temperatura)])  
        
 
     context = {
