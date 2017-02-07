@@ -87,14 +87,17 @@ def test_show(request):
     temperaturas = Temperatura.objects.all().order_by('fecha')
 
     data = []
+    count = 0
 
     for t in temperaturas:
         data.append([(time.mktime((localtime(t.fecha)).timetuple()))*1000,float(t.temperatura)])  
+        count = count + 1
         # print(str(localtime(t.fecha)) +" " +str(t.temperatura) + " " + str(time.mktime((localtime(t.fecha)).timetuple())*1000))  
        
 
     context = {
         'tiempo': tiempo,        
         'data': data,
+        'count': count,
     }
     return HttpResponse(template.render(context,request))
