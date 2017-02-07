@@ -21,7 +21,12 @@
 <script>
     var data = {{data | safe}};    
     $(function () {       
-        
+       
+	Highcharts.setOptions({
+    		global: {
+        		useUTC: false
+    		}
+	}); 
         Highcharts.chart('grafica_show', {
             chart: {
                 zoomType: 'x'
