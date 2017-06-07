@@ -11,12 +11,12 @@ from .models import TemperaturaTest, Temperatura
 
 def index(request):
 
-    template = loader.get_template('calor/index.html')
-    return HttpResponse(template.render(request))
+    template = loader.render_to_string('calor/index.html')
+    return HttpResponse(template)
 
 def api_index(request):
 
-    template = loader.get_template('calor/index.html')
+    template = loader.render_to_string('calor/index.html')
     return HttpResponse(template.render(request))
 
 def add_temp_test(request):
